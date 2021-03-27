@@ -1,7 +1,7 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow: *fonts/
-Disallow: *dex.html
-Disallow: /pdfs/stack*
+Disallow: /*/fonts/
+Disallow: /apple/*
+Disallow: /p*
 Disallow: /old_website/*/smart_mirror/
 Disallow: /old*/diag
