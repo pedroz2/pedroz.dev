@@ -163,12 +163,23 @@ button { font: inherit; color: inherit; background: none; border: none; }
 }
 .frame--logo .ph { background: var(--blue-light); color: var(--blue); font-size: 9px; }
 
+/* 16:9 rather than the old fixed 120px strip (3.53:1) — real photos got
+   center-cropped into nothing at that ratio */
 .frame--project {
-  height: 120px;
+  aspect-ratio: 16 / 9;
   border-bottom: var(--hair);
 }
 .frame--project > .ph,
 .frame--project > img { border-radius: 0; }
+
+/* aspect-ratio rather than a fixed height: these are personal photos and
+   deserve a natural crop, and the box holds its shape at any column width */
+.frame--off {
+  aspect-ratio: 3 / 2;
+  border-bottom: var(--hair);
+}
+.frame--off > .ph,
+.frame--off > img { border-radius: 0; }
 
 .frame--edu {
   width: 110px;
@@ -563,9 +574,20 @@ button { font: inherit; color: inherit; background: none; border: none; }
   gap: 14px;
 }
 
+/* Same construction as .project — image on top, body below — so the two
+   photo-led sections read as one pattern rather than two ideas. */
 .off__card {
-  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
   background: var(--cream);
+  border: var(--hair);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.off__body {
+  flex: 1;
+  padding: 14px 16px 16px;
 }
 
 .off__label {
@@ -574,7 +596,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
   color: var(--blue);
 }
 
-.off__card p:not(.off__label) {
+.off__body p:not(.off__label) {
   margin-top: 7px;
   font-size: 13.5px;
   line-height: 1.55;
