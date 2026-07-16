@@ -166,7 +166,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
 .frame--logo {
   flex-shrink: 0;
   align-self: stretch;
-  width: 135px;
+  width: 122px;
   position: relative;
 }
 .frame--logo > img {
@@ -726,7 +726,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
   /* No stretch on a column axis, and the out-of-flow img gives no intrinsic
      height — so height comes from aspect-ratio, which works here because the
      width is definite. */
-  .frame--logo { align-self: flex-start; width: 76px; aspect-ratio: 1; }
+  .frame--logo { align-self: flex-start; width: 68px; aspect-ratio: 1; }
 
   .wins { grid-template-columns: 1fr 1fr; }
   .wins > :nth-child(4) { grid-column: auto; }
