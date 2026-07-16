@@ -76,11 +76,17 @@
       const iso = commits?.[0]?.commit?.committer?.date;
       if (!iso) return;
 
+      /* UTC, not local: the commit stamp is the same for every visitor,
+         so the badge shouldn't say something different in Seattle than
+         it does in Berlin. */
+      const d = new Date(iso);
+      const pad = (n) => String(n).padStart(2, '0');
+      const stamp =
+        `${d.getUTCMonth() + 1}/${d.getUTCDate()}/${String(d.getUTCFullYear()).slice(2)}` +
+        ` ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())} UTC`;
+
       badge.querySelector('[data-badge-version]').textContent = count;
-      badge.querySelector('[data-badge-date]').textContent = new Date(iso).toLocaleDateString(
-        'en-US',
-        { month: 'numeric', day: 'numeric', year: '2-digit' }
-      );
+      badge.querySelector('[data-badge-date]').textContent = stamp;
     })
     .catch(() => {
       /* Rate-limited, offline, or the branch moved. The hardcoded

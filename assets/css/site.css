@@ -11,6 +11,7 @@
   --blue:          #4A6FA5;
   --blue-light:    #E8EEF5;
   --border:        rgba(43, 42, 40, 0.14);
+  --dot:           rgba(43, 42, 40, 0.20);
 
   --display: 'Source Serif 4', Georgia, serif;
   --body:    'Inter', system-ui, sans-serif;
@@ -34,8 +35,10 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   background: var(--cream);
-  /* dot grid runs full-bleed; the content column floats above it */
-  background-image: radial-gradient(var(--border) 1px, transparent 1px);
+  /* dot grid runs full-bleed; the content column floats above it.
+     --dot is deliberately stronger than --border: hairlines are
+     structure, dots are texture, and they shouldn't share a value. */
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
   background-size: 22px 22px;
   color: var(--charcoal);
   font-family: var(--body);
@@ -178,8 +181,17 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
 /* ═══ hero ═════════════════════════════════════════════════ */
 
+/* The dot grid puts a row of dots every 22px, centred at y = 11 + 22n,
+   so the gaps between rows fall on the multiples of 22. Left alone the
+   rule lands at y≈386.2 — 1.2px off the row at 385, i.e. sitting on it.
+   --rule-nudge drops it to 396, dead centre between 385 and 407.
+
+   Tuned to the hero's rendered height: re-measure if the hero's type or
+   spacing changes, and measure with the reveal settled — .reveal's
+   translateY(14px) is included in getBoundingClientRect. */
 .hero {
-  padding: 72px 0 26px;
+  --rule-nudge: 9.8px;
+  padding: 72px 0 calc(26px + var(--rule-nudge));
   border-bottom: var(--hair); /* closes the hero as one block */
 }
 
@@ -191,13 +203,17 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
 .hero__intro { flex: 1; min-width: 0; }
 
+/* Inter rather than a Helvetica stack: same neutral grotesque look, but
+   it renders identically on every OS instead of dropping Windows and
+   Android visitors onto Arial. Already loaded as the body face, so the
+   headline costs no extra request. */
 .hero__name {
   margin-top: 20px;
-  font-family: var(--display);
+  font-family: var(--body);
   font-weight: 700;
-  font-size: 58px;
-  line-height: 1.04;
-  letter-spacing: -0.02em;
+  font-size: 72px;
+  line-height: 1.02;
+  letter-spacing: -0.035em; /* Inter needs tightening at display sizes */
 }
 
 .hero__meta {
@@ -223,18 +239,20 @@ button { font: inherit; color: inherit; background: none; border: none; }
   cursor: help;
 }
 
-/* Absolutely positioned, so revealing it can never shift the page —
-   and the text can change length when the API responds. */
+/* Opens to the right, vertically centred on the eyebrow — the space
+   beside it is empty, whereas below it is the name. Absolutely
+   positioned, so revealing it can never shift the page, and the text
+   is free to change length when the API responds. */
 .badge__details {
   position: absolute;
-  top: calc(100% + 7px);
-  left: 0;
+  top: 50%;
+  left: calc(100% + 12px);
   white-space: nowrap;
   font-family: var(--mono);
   font-size: 11.5px;
   color: var(--charcoal-soft);
   opacity: 0;
-  transform: translateY(-3px);
+  transform: translateY(-50%) translateX(-4px);
   pointer-events: none;
   transition: opacity 0.22s var(--ease), transform 0.22s var(--ease);
 }
@@ -242,7 +260,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
 .badge:focus-within .badge__details,
 .badge[data-open] .badge__details {
   opacity: 1;
-  transform: none;
+  transform: translateY(-50%);
   pointer-events: auto;
 }
 
@@ -596,7 +614,10 @@ button { font: inherit; color: inherit; background: none; border: none; }
 @media (max-width: 900px) {
   :root { --gutter: 28px; }
 
-  .hero__name { font-size: 46px; }
+  /* smaller name + headshot ⇒ different hero height ⇒ different phase
+     against the 22px dot lattice, so the nudge is re-measured per band */
+  .hero { --rule-nudge: 2.7px; }
+  .hero__name { font-size: 56px; }
   .frame--headshot { width: 160px; }
   .wins { grid-template-columns: repeat(3, 1fr); }
   .wins > :nth-child(4) { grid-column: 1 / 3; }
@@ -610,14 +631,15 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
   .section { margin-top: 44px; }
 
-  /* hero stacks: eyebrow → name → role/location → headshot → icons → CTA → rule */
-  .hero { padding: 40px 0 22px; }
+  /* hero stacks: eyebrow → name → role/location → headshot → icons → CTA → rule.
+     Keep the calc() — a padding shorthand here would silently kill --rule-nudge. */
+  .hero { padding: 40px 0 calc(22px + var(--rule-nudge)); }
   .hero__top {
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
   }
-  .hero__name { font-size: 34px; }
+  .hero__name { font-size: 42px; }
   .frame--headshot { width: 120px; align-self: flex-start; }
 
   .hero__contact {
@@ -626,7 +648,27 @@ button { font: inherit; color: inherit; background: none; border: none; }
     gap: 18px;
   }
   .cta { text-align: left; }
-  .cta__break { display: none; }
+
+  /* No room to the right at this width — drop it below the eyebrow and
+     give it a surface, so it reads as a deliberate popover rather than
+     text colliding with the name behind it. */
+  .badge__details {
+    top: calc(100% + 8px);
+    left: 0;
+    max-width: min(280px, calc(100vw - var(--gutter) * 2));
+    padding: 7px 10px;
+    background: var(--paper);
+    border: var(--hair);
+    border-radius: 6px;
+    white-space: normal;
+    line-height: 1.55;
+    transform: translateY(-3px);
+  }
+  .badge:hover .badge__details,
+  .badge:focus-within .badge__details,
+  .badge[data-open] .badge__details {
+    transform: none;
+  }
 
   .section-title { font-size: 22px; }
 
@@ -658,7 +700,8 @@ button { font: inherit; color: inherit; background: none; border: none; }
 }
 
 @media (max-width: 360px) {
-  .hero__name { font-size: 30px; }
+  .hero { --rule-nudge: 9.3px; } /* rule lands on the dot row at 517 without this */
+  .hero__name { font-size: 36px; }
   .wins { grid-template-columns: 1fr; }
   .wins > :nth-child(n) { grid-column: auto; }
 }
