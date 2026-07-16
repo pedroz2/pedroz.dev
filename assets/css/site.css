@@ -154,14 +154,36 @@ button { font: inherit; color: inherit; background: none; border: none; }
   transform: rotate(-2deg);
 }
 
+/* Runs the card's full height; the mark is transparent, so it sits directly
+   on the paper with no tile, border, or box around it.
+
+   Width is explicit rather than derived. Flex resolves the main size before
+   the cross size, so aspect-ratio has no definite height to work back from
+   and collapses to 0. The <img> is out of flow for the opposite reason: in
+   flow, its 480px intrinsic height feeds the flex container's height, which
+   stretch then feeds back to the logo, and the card blows itself open.
+   Out of flow, the text column alone sizes the card and the mark fills it. */
 .frame--logo {
   flex-shrink: 0;
-  width: 64px;
-  aspect-ratio: 1;
-  border-radius: 10px;
-  border: var(--hair);
+  align-self: stretch;
+  width: 150px;
+  position: relative;
 }
-.frame--logo .ph { background: var(--blue-light); color: var(--blue); font-size: 9px; }
+.frame--logo > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* never crop the mark */
+}
+.frame--logo .ph {
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: 10px;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: 9px;
+}
 
 /* 16:9 rather than the old fixed 120px strip (3.53:1) — real photos got
    center-cropped into nothing at that ratio */
@@ -257,7 +279,10 @@ button { font: inherit; color: inherit; background: none; border: none; }
 .badge__details {
   position: absolute;
   top: 50%;
-  left: calc(100% + 12px);
+  left: calc(100% + 8px);
+  padding: 4px 8px;
+  background: var(--cream); /* opaque, so dots don't collide with the text */
+  border-radius: 4px;
   white-space: nowrap;
   font-family: var(--mono);
   font-size: 11.5px;
@@ -292,6 +317,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
   place-items: center;
   width: 40px;
   height: 40px;
+  background: var(--cream); /* opaque, so the dot grid doesn't show through */
   border: var(--hair);
   border-radius: 50%;
   color: var(--charcoal);
@@ -320,8 +346,8 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
 .current {
   display: flex;
-  align-items: flex-start;
-  gap: 18px;
+  align-items: stretch; /* lets the logo column run the card's full height */
+  gap: 20px;
   padding: 20px 22px;
 }
 
@@ -694,8 +720,13 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
   .section-title { font-size: 22px; }
 
-  /* currently: logo above the text */
+  /* currently: logo above the text. Cancel the stretch — on a column axis it
+     would run the mark to the full card width and blow the card open. */
   .current { flex-direction: column; gap: 14px; padding: 18px; }
+  /* No stretch on a column axis, and the out-of-flow img gives no intrinsic
+     height — so height comes from aspect-ratio, which works here because the
+     width is definite. */
+  .frame--logo { align-self: flex-start; width: 84px; aspect-ratio: 1; }
 
   .wins { grid-template-columns: 1fr 1fr; }
   .wins > :nth-child(4) { grid-column: auto; }
