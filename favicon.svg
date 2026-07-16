@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="13" fill="#6B8F71"/>
+  <text x="32" y="45" text-anchor="middle" fill="#FAF7F2"
+        font-family="Georgia, 'Times New Roman', serif" font-size="36" font-weight="700">pz</text>
+  <path d="M14 51 Q26 48,32 51 T50 51" stroke="#FAF7F2" stroke-width="2.5" fill="none"
+        stroke-linecap="round" opacity="0.75"/>
+</svg>
