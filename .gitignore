@@ -1,3 +1,6 @@
 .DS_Store
 .vs/
 .claude/
+
+# photo sources — originals stay local; the repo ships the derived crop
+pzheadshot*.png
