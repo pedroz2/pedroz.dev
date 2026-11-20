@@ -343,15 +343,22 @@ button { font: inherit; color: inherit; background: none; border: none; }
 .frame--off > .ph,
 .frame--off > img { border-radius: 0; }
 
-/* The seal sits bare and level on the page: it's transparent and
-   carries its own navy ring, so no tile, border, crop or tilt.
-   The source is only 250px, so on a 2x screen it's a touch soft at
-   this size; a larger source would fix that. */
+/* The horizontal U of M wordmark sits bare and level on the page.
+   Its navy lettering would vanish on the dark background, so dark
+   mode swaps in a copy with cream lettering (the maize M is the same
+   in both). The swap follows the same rules as the theme toggle. */
 .frame--edu {
-  width: 170px;
-  aspect-ratio: 1;
+  width: 300px;
+  aspect-ratio: 640 / 67; /* the wordmark's own shape */
 }
 .frame--edu > img { object-fit: contain; border-radius: 0; }
+.frame--edu .wm-dark { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .frame--edu .wm-light { display: none; }
+  :root:not([data-theme="light"]) .frame--edu .wm-dark  { display: block; }
+}
+:root[data-theme="dark"] .frame--edu .wm-light { display: none; }
+:root[data-theme="dark"] .frame--edu .wm-dark  { display: block; }
 .frame--edu .ph { background: var(--blue-light); color: var(--blue); font-size: 10px; }
 
 /* ═══ hero ═════════════════════════════════════════════════ */
@@ -723,7 +730,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
 .edu {
   display: grid;
-  grid-template-columns: 1fr 170px;
+  grid-template-columns: 1fr 300px;
   gap: 20px;
   align-items: center;
 }
@@ -900,7 +907,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
   /* logo drops below the text, still at a small fixed size */
   .edu { grid-template-columns: 1fr; gap: 16px; }
-  .frame--edu { width: 132px; }
+  .frame--edu { width: min(260px, 100%); }
 
   .off { grid-template-columns: 1fr; }
 }
