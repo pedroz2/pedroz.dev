@@ -251,46 +251,58 @@
     <div class="projects">
 
       <article class="project">
-        <div class="frame frame--project"><span class="ph">image</span></div>
+        <div class="frame frame--project">
+          <img src="assets/img/projects/search-engine.jpg" alt="Architecture diagram: a manager distributing work to crawler workers, each running a frontier, crawler, parser and indexer that build its share of the index" loading="lazy">
+        </div>
         <div class="project__body">
           <p class="project__no">01</p>
-          <h3 class="project__title">Multi-threaded search engine</h3>
-          <p>Crawled 191M pages using a standard library I wrote from scratch — 6,500 lines of C/C++, hash tables and sockets included.</p>
+          <h3 class="project__title">Multi-Threaded Search Engine</h3>
+          <p>A six-person build of a search engine from the ground up, on a C/C++ standard library we wrote ourselves — hash tables and sockets included. A manager split the web by domain across 48 worker machines, each crawling, parsing and indexing its own shard at up to ~3,800 pages a second. Queries fan out to every worker, which ranks its own top 10 for the manager to merge. Crawled 191M pages; I built much of the manager and the HTML parser.</p>
+          <p class="project__links">
+            <a href="assets/pdfs/search-engine-report.pdf">report</a>
+            <a href="assets/pdfs/search-engine-slides.pdf">slides</a>
+          </p>
         </div>
       </article>
 
       <article class="project">
-        <div class="frame frame--project"><span class="ph">image</span></div>
+        <div class="frame frame--project">
+          <img src="assets/img/projects/weather-balloon.jpg" alt="The curve of the Earth and a band of blue atmosphere, photographed from the balloon at altitude" loading="lazy">
+        </div>
         <div class="project__body">
           <p class="project__no">02</p>
-          <h3 class="project__title">Weather balloon payload</h3>
-          <p>Probably my favorite project to date. Went from learning to solder to launching sensors into the atmosphere. Won “Best Overall Design.”</p>
+          <h3 class="project__title">Weather Balloon Payload</h3>
+          <p>Probably my favorite project to date. A five-person team went from learning to solder to launching sensors into the atmosphere. We added a gyroscope and barometer to measure wind shear by altitude — the turbulence airliners try to avoid. Won “Best Overall Design.”</p>
           <p class="project__links">
             <a href="https://github.com/pedroz2/weather_balloon">repo</a>
-            <a href="/pdfs/final_report.pdf">report</a>
-            <a href="/pdfs/team12_poster.pdf">poster</a>
+            <a href="assets/pdfs/weather-balloon-report.pdf">report</a>
+            <a href="assets/pdfs/weather-balloon-poster.pdf">poster</a>
           </p>
         </div>
       </article>
 
       <article class="project">
-        <div class="frame frame--project"><span class="ph">image</span></div>
+        <div class="frame frame--project">
+          <img src="assets/img/projects/smart-mirror.jpg" alt="A wood-framed mirror on a wall, showing the time, weather and calendar on its glass" loading="lazy">
+        </div>
         <div class="project__body">
           <p class="project__no">03</p>
-          <h3 class="project__title">Smart mirror</h3>
-          <p>Started as an answer to a daily annoyance. Hardest part wasn't the Raspberry Pi — it was the woodworking.</p>
+          <h3 class="project__title">Smart Mirror</h3>
+          <p>Started as an answer to a daily annoyance: a Raspberry Pi running MagicMirror behind two-way glass, showing the weather, date and my day. Hardest part wasn't the Pi — it was the woodworking.</p>
           <p class="project__links">
-            <a href="https://github.com/pedroz2/smart_mirror">repo</a>
+            <a href="https://magicmirror.builders/">magicmirror</a>
           </p>
         </div>
       </article>
 
       <article class="project">
-        <div class="frame frame--project"><span class="ph">image</span></div>
+        <div class="frame frame--project">
+          <img src="assets/img/projects/streaming-proxy.jpg" alt="A packet capture of HTTP requests for video fragments passing through the proxy" loading="lazy">
+        </div>
         <div class="project__body">
           <p class="project__no">04</p>
-          <h3 class="project__title">Video streaming proxy</h3>
-          <p>Adaptive bitrate, throughput estimation, and DNS load balancing. Cut buffering time by 40% across concurrent streams.</p>
+          <h3 class="project__title">Video Streaming Proxy</h3>
+          <p>Multi-threaded C++ proxy with adaptive bitrate, throughput estimation, and DNS load balancing across CDN servers. Cut buffering time by 40% across concurrent streams.</p>
         </div>
       </article>
 

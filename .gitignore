@@ -4,3 +4,6 @@
 
 # photo sources — originals stay local; the repo ships the derived crop
 pzheadshot*.png
+
+# old React site, kept locally as source material
+pedroz.dev-master/
