@@ -343,15 +343,13 @@ button { font: inherit; color: inherit; background: none; border: none; }
 .frame--off > .ph,
 .frame--off > img { border-radius: 0; }
 
-/* Landscape crop of a square logo: the navy padding takes the trim,
-   so the whole block M and wordmark stay in frame. */
+/* The block M sits bare and level on the page: it's transparent and
+   carries its own navy outline, so no tile, border, crop or tilt. */
 .frame--edu {
-  width: 170px;
-  aspect-ratio: 3 / 2; /* any wider and the crop starts eating the wordmark */
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  transform: rotate(-1.2deg);
+  width: 150px;
+  aspect-ratio: 400 / 288; /* the mark's own shape */
 }
+.frame--edu > img { object-fit: contain; border-radius: 0; }
 .frame--edu .ph { background: var(--blue-light); color: var(--blue); font-size: 10px; }
 
 /* ═══ hero ═════════════════════════════════════════════════ */
@@ -723,7 +721,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
 .edu {
   display: grid;
-  grid-template-columns: 1fr 170px;
+  grid-template-columns: 1fr 150px;
   gap: 20px;
   align-items: center;
 }
@@ -898,10 +896,9 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
   .projects { grid-template-columns: 1fr; }
 
-  /* logo drops below the text; it stays a small square, since a
-     full-width banner would crop the mark */
+  /* logo drops below the text, still at a small fixed size */
   .edu { grid-template-columns: 1fr; gap: 16px; }
-  .frame--edu { width: 132px; }
+  .frame--edu { width: 112px; }
 
   .off { grid-template-columns: 1fr; }
 }
