@@ -59,6 +59,66 @@
     osDark.addEventListener('change', sync);
   }
 
+  /* ── carousels ──────────────────────────────────────────── */
+
+  /* The track already scrolls and snaps on its own. This only adds
+     arrows (wrapping at the ends) and dots that follow the scroll
+     position, however it got there. */
+
+  document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+    const track = carousel.querySelector('.carousel__track');
+    const slides = track.children;
+    const dots = carousel.querySelector('.carousel__dots');
+    const prev = carousel.querySelector('.carousel__btn--prev');
+    const next = carousel.querySelector('.carousel__btn--next');
+    if (slides.length < 2) return;
+
+    for (let i = 0; i < slides.length; i++) dots.append(document.createElement('span'));
+
+    /* Slides can be fractional widths (355.5px), so the nearest slide
+       is found by offset rather than by dividing scrollLeft. */
+    const nearest = () => {
+      let best = 0;
+      for (let i = 1; i < slides.length; i++) {
+        if (Math.abs(slides[i].offsetLeft - track.scrollLeft) <
+            Math.abs(slides[best].offsetLeft - track.scrollLeft)) best = i;
+      }
+      return best;
+    };
+
+    /* While a smooth scroll is in flight, scrollLeft is somewhere in
+       between; clicks count from where it's headed, not where it is. */
+    let target = null;
+    let settle = 0;
+    const index = () => target ?? nearest();
+    const go = (i) => {
+      target = (i + slides.length) % slides.length;
+      track.scrollTo({ left: slides[target].offsetLeft });
+      clearTimeout(settle);
+      settle = setTimeout(() => { target = null; }, 600);
+    };
+
+    let shown = -1;
+    const sync = () => {
+      const i = nearest();
+      if (i === shown) return;
+      if (dots.children[shown]) dots.children[shown].removeAttribute('data-active');
+      dots.children[i]?.setAttribute('data-active', '');
+      shown = i;
+    };
+
+    let frame = 0;
+    track.addEventListener('scroll', () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(sync);
+    }, { passive: true });
+
+    prev.addEventListener('click', () => go(index() - 1));
+    next.addEventListener('click', () => go(index() + 1));
+    prev.hidden = next.hidden = false;
+    sync();
+  });
+
   /* ── version badge ──────────────────────────────────────── */
 
   const badge = document.querySelector('[data-badge]');

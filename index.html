@@ -266,15 +266,48 @@
       </article>
 
       <article class="project">
-        <div class="frame frame--project">
-          <img src="assets/img/projects/weather-balloon.jpg" alt="The curve of the Earth and a band of blue atmosphere, photographed from the balloon at altitude" loading="lazy">
+        <!-- Without JS this is still a swipeable, scroll-snapping strip;
+             site.js adds the arrows and the position dots. -->
+        <div class="frame frame--project carousel" data-carousel role="region" aria-roledescription="carousel" aria-label="Weather balloon photos">
+          <div class="carousel__track" tabindex="0">
+            <figure class="carousel__slide" aria-roledescription="slide" aria-label="1 of 8">
+              <img src="assets/img/projects/weather-balloon/01-curvature.jpg" alt="The curve of the Earth and a band of blue atmosphere, photographed from the balloon at altitude" loading="lazy">
+            </figure>
+            <figure class="carousel__slide" aria-roledescription="slide" aria-label="2 of 8">
+              <img src="assets/img/projects/weather-balloon/02-cloud-cover.jpg" alt="A blanket of clouds over the Great Lakes region beneath the black edge of space" loading="lazy">
+            </figure>
+            <figure class="carousel__slide" aria-roledescription="slide" aria-label="3 of 8">
+              <img src="assets/img/projects/weather-balloon/03-clouds.jpg" alt="Scattered clouds over farmland, looking down from high altitude past the payload's antenna" loading="lazy">
+            </figure>
+            <figure class="carousel__slide" aria-roledescription="slide" aria-label="4 of 8">
+              <img src="assets/img/projects/weather-balloon/04-ascent.jpg" alt="Fields, roads and buildings shortly after launch, seen from the rising payload" loading="lazy">
+            </figure>
+            <figure class="carousel__slide" aria-roledescription="slide" aria-label="5 of 8">
+              <img src="assets/img/projects/weather-balloon/05-flight-path.jpg" alt="The balloon's recorded altitude plotted over a map of southern Michigan, climbing past Ann Arbor toward Lake Erie" loading="lazy">
+            </figure>
+            <figure class="carousel__slide" aria-roledescription="slide" aria-label="6 of 8">
+              <img src="assets/img/projects/weather-balloon/06-payload.jpg" alt="The finished payload: a foam box wrapped in black tape, labeled TMP36, with three metal sensor rods" loading="lazy">
+            </figure>
+            <figure class="carousel__slide" aria-roledescription="slide" aria-label="7 of 8">
+              <img src="assets/img/projects/weather-balloon/07-payload-inside.jpg" alt="Inside the payload: the custom circuit board with its sensors, wiring and battery, packed in green foam" loading="lazy">
+            </figure>
+            <figure class="carousel__slide" aria-roledescription="slide" aria-label="8 of 8">
+              <img src="assets/img/projects/weather-balloon/08-pcb-layout.jpg" alt="The circuit board layout in Altium, with footprints for the Arduino, GPS, accelerometer, barometer and other sensors" loading="lazy">
+            </figure>
+          </div>
+          <button type="button" class="carousel__btn carousel__btn--prev" aria-label="Previous photo" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 6l-6 6l6 6"/></svg>
+          </button>
+          <button type="button" class="carousel__btn carousel__btn--next" aria-label="Next photo" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6l-6 6"/></svg>
+          </button>
+          <div class="carousel__dots" aria-hidden="true"></div>
         </div>
         <div class="project__body">
           <p class="project__no">02</p>
           <h3 class="project__title">Weather Balloon Payload</h3>
           <p>Probably my favorite project to date. A five-person team went from learning to solder to launching sensors into the atmosphere. We added a gyroscope and barometer to measure wind shear by altitude — the turbulence airliners try to avoid. Won “Best Overall Design.”</p>
           <p class="project__links">
-            <a href="https://github.com/pedroz2/weather_balloon">repo</a>
             <a href="assets/pdfs/weather-balloon-report.pdf">report</a>
             <a href="assets/pdfs/weather-balloon-poster.pdf">poster</a>
           </p>
@@ -366,21 +399,27 @@
 
     <div class="off">
       <article class="off__card">
-        <div class="frame frame--off"><span class="ph">ironman</span></div>
+        <div class="frame frame--off">
+          <img src="assets/img/off/ironman.jpg" alt="Aerial view of an IRONMAN swim start: hundreds of athletes in wetsuits and swim caps packed on the beach beside the start tower, with kayaks waiting on the water" loading="lazy">
+        </div>
         <div class="off__body">
           <p class="off__label">ironman</p>
           <p>Two-time finisher at IRONMAN Victoria 70.3. Training for Barcelona 140.6 in October, which is exactly double and a fact I try not to dwell on. The swim is still the part I think about at 2am.</p>
         </div>
       </article>
       <article class="off__card">
-        <div class="frame frame--off"><span class="ph">ski patrol</span></div>
+        <div class="frame frame--off">
+          <img src="assets/img/off/ski-patrol.jpg" alt="The Crystal Mountain ski patrol, a crowd in red and yellow jackets, posed on the steps at the base area with their patrol dogs and the award plaque" loading="lazy">
+        </div>
         <div class="off__body">
           <p class="off__label">crystal mountain ski patrol</p>
-          <p>Volunteer medical patrol as an Outdoor Emergency Care Technician — wilderness EMT, WFR, and AIARE avalanche rescue. Weekends on the mountain with a radio and a toboggan, where the skiing turns out to be the easy part.</p>
+          <p>Volunteer OEC technician with WFR and AIARE avalanche rescue, on the National Ski Patrol’s <a href="https://blog.crystalmountainresort.com/crystal-mountain-volunteer-ski-patrol-takes-home-outstanding-patrol-of-the-year-award/">Outstanding Patrol of the Year</a>. Weekends with a radio and a toboggan — the skiing is the easy part.</p>
         </div>
       </article>
       <article class="off__card">
-        <div class="frame frame--off"><span class="ph">kona</span></div>
+        <div class="frame frame--off">
+          <img src="assets/img/off/kona.jpg" alt="Kona as a puppy: a fluffy blue merle Australian shepherd with a white blaze, lying on a wood floor and looking up" loading="lazy">
+        </div>
         <div class="off__body">
           <p class="off__label">my dog kona</p>
           <p>Australian shepherd, Canadian by birth, brown eye on the left and blue on the right. Contributes nothing to the codebase, but is reliably the best part of coming home.</p>

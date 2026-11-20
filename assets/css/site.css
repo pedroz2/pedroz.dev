@@ -248,6 +248,92 @@ button { font: inherit; color: inherit; background: none; border: none; }
 .frame--project > .ph,
 .frame--project > img { border-radius: 0; }
 
+/* ── carousel: a scroll-snap strip inside a project frame ──
+   The track does the real work (swipe, trackpad, arrow keys all scroll
+   it natively); the buttons and dots are a layer on top from site.js. */
+
+.carousel { position: relative; }
+
+.carousel__track {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain; /* a hard swipe shouldn't trigger browser back */
+  scrollbar-width: none;
+}
+.carousel__track::-webkit-scrollbar { display: none; }
+.carousel__track:focus-visible { outline-offset: -3px; }
+
+.carousel__slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+.carousel__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel__btn {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-top: -16px;
+  background: var(--cream);
+  border: var(--hair);
+  border-radius: 50%;
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: opacity 0.18s var(--ease), background-color 0.18s var(--ease);
+}
+.carousel__btn[hidden] { display: none; }
+.carousel__btn--prev { left: 10px; }
+.carousel__btn--next { right: 10px; }
+.carousel__btn:hover { background: var(--sage-light); color: var(--sage-deep); }
+.carousel__btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+/* Mouse users get the arrows on hover; touch keeps them visible,
+   since there's no hover to reveal them. */
+@media (hover: hover) {
+  .carousel__btn { opacity: 0; }
+  .carousel:hover .carousel__btn,
+  .carousel:focus-within .carousel__btn { opacity: 1; }
+}
+
+/* Light dots with a dark halo read on sky, clouds and circuit board alike,
+   so they don't follow the theme. */
+.carousel__dots {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  display: flex;
+  gap: 5px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.carousel__dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition: width 0.22s var(--ease), background-color 0.22s var(--ease);
+}
+.carousel__dots span[data-active] { width: 16px; background: #fff; }
+
 /* aspect-ratio rather than a fixed height: these are personal photos and
    deserve a natural crop, and the box holds its shape at any column width */
 .frame--off {
