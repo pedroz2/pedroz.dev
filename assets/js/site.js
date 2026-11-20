@@ -7,7 +7,7 @@
   /* ── scroll reveals ─────────────────────────────────────── */
 
   const reveals = document.querySelectorAll('.reveal');
-  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (still || !('IntersectionObserver' in window)) {
     reveals.forEach((el) => el.classList.add('is-visible'));
@@ -23,6 +23,40 @@
       { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
     );
     reveals.forEach((el) => io.observe(el));
+  }
+
+  /* ── theme toggle ───────────────────────────────────────── */
+
+  /* Unpinned, the page follows the OS. A click pins the opposite of
+     whatever is showing; the inline script in <head> re-applies the
+     pin before first paint on the next visit. */
+
+  const root = document.documentElement;
+  const toggle = document.querySelector('[data-theme-toggle]');
+  const osDark = matchMedia('(prefers-color-scheme: dark)');
+  const BG = { light: '#FAF7F2', dark: '#1B1A18' };
+
+  const current = () => root.dataset.theme || (osDark.matches ? 'dark' : 'light');
+
+  const sync = () => {
+    const theme = current();
+    toggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
+    // Both metas carry media queries; a pin has to override whichever matches.
+    document.querySelectorAll('meta[name="theme-color"]').forEach((m) => {
+      m.content = root.dataset.theme ? BG[theme] : BG[m.media.includes('dark') ? 'dark' : 'light'];
+    });
+  };
+
+  if (toggle) {
+    toggle.hidden = false;
+    sync();
+    toggle.addEventListener('click', () => {
+      const next = current() === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch (e) { /* private mode: session-only */ }
+      sync();
+    });
+    osDark.addEventListener('change', sync);
   }
 
   /* ── version badge ──────────────────────────────────────── */

@@ -10,8 +10,14 @@
   --sage-light:    #E3EBE1;
   --blue:          #4A6FA5;
   --blue-light:    #E8EEF5;
+  --ink:           #3D3C39; /* body copy inside cards: between charcoal and soft */
   --border:        rgba(43, 42, 40, 0.14);
+  --rule:          rgba(43, 42, 40, 0.12);
   --dot:           rgba(43, 42, 40, 0.20);
+  --shadow:        rgba(43, 42, 40, 0.08);
+  --link-line:     rgba(74, 111, 165, 0.5);
+
+  color-scheme: light;
 
   --display: 'Source Serif 4', Georgia, serif;
   --body:    'Inter', system-ui, sans-serif;
@@ -23,6 +29,54 @@
   --radius:  12px;
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ── dark: same warm family, lights out ──────────────────────
+   Follows the OS unless the toggle has pinned a choice, which
+   site.js records as data-theme on <html>. The token block is
+   repeated because CSS can't share one rule between a media
+   query and a plain selector.                                 */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cream:         #1B1A18;
+    --paper:         #24231F;
+    --charcoal:      #ECE7DD;
+    --charcoal-soft: #A8A397;
+    --ink:           #D3CEC3;
+    --sage:          #8DB494;
+    --sage-deep:     #A9CBAE;
+    --sage-light:    #29342A;
+    --blue:          #8FB2E3;
+    --blue-light:    #212B39;
+    --border:        rgba(236, 231, 221, 0.14);
+    --rule:          rgba(236, 231, 221, 0.12);
+    --dot:           rgba(236, 231, 221, 0.11);
+    --shadow:        rgba(0, 0, 0, 0.35);
+    --link-line:     rgba(143, 178, 227, 0.5);
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --cream:         #1B1A18;
+  --paper:         #24231F;
+  --charcoal:      #ECE7DD;
+  --charcoal-soft: #A8A397;
+  --ink:           #D3CEC3;
+  --sage:          #8DB494;
+  --sage-deep:     #A9CBAE;
+  --sage-light:    #29342A;
+  --blue:          #8FB2E3;
+  --blue-light:    #212B39;
+  --border:        rgba(236, 231, 221, 0.14);
+  --rule:          rgba(236, 231, 221, 0.12);
+  --dot:           rgba(236, 231, 221, 0.11);
+  --shadow:        rgba(0, 0, 0, 0.35);
+  --link-line:     rgba(143, 178, 227, 0.5);
+
+  color-scheme: dark;
 }
 
 /* ═══ reset & base ═════════════════════════════════════════ */
@@ -150,7 +204,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
   border-radius: 50%;
   border: 4px solid var(--cream);
   outline: 1px solid var(--border);
-  box-shadow: 4px 5px 0 rgba(43, 42, 40, 0.08); /* hard offset, not blurred */
+  box-shadow: 4px 5px 0 var(--shadow); /* hard offset, not blurred */
   transform: rotate(-2deg);
 }
 
@@ -334,6 +388,17 @@ button { font: inherit; color: inherit; background: none; border: none; }
 }
 .icon:hover { background: var(--sage-light); border-color: transparent; color: var(--sage-deep); }
 
+/* ── theme toggle: shows the theme you'd switch TO ── */
+.theme-toggle { cursor: pointer; }
+.theme-toggle[hidden] { display: none; } /* no JS, no toggle — the OS decides */
+.theme-toggle .i-sun { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .i-sun  { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .i-moon { display: none; }
+}
+:root[data-theme="dark"] .theme-toggle .i-sun  { display: block; }
+:root[data-theme="dark"] .theme-toggle .i-moon { display: none; }
+
 .cta {
   font-family: var(--mono);
   font-size: 12px;
@@ -361,7 +426,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
 }
 .current__name a {
   color: var(--charcoal);
-  text-decoration-color: rgba(74, 111, 165, 0.5);
+  text-decoration-color: var(--link-line);
 }
 
 /* Inline, inside the link — so it trails the last word instead of
@@ -390,13 +455,13 @@ button { font: inherit; color: inherit; background: none; border: none; }
   margin-top: 12px;
   font-size: 14px;
   line-height: 1.62;
-  color: #3D3C39;
+  color: var(--ink);
 }
 
 .current__role {
   margin-top: 11px;
   padding-top: 11px;
-  border-top: 0.5px solid rgba(43, 42, 40, 0.12);
+  border-top: 0.5px solid var(--rule);
   font-size: 13.5px;
   line-height: 1.55;
   color: var(--charcoal-soft);
@@ -477,7 +542,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
 .entry__card > p:not(.entry__org) {
   font-size: 13.5px;
   line-height: 1.55;
-  color: #3D3C39;
+  color: var(--ink);
 }
 
 /* ── tech chips (shared by timeline + technologies) ── */
@@ -501,7 +566,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
 .chips--lg li {
   padding: 4px 10px;
   border-radius: 5px;
-  color: #3D3C39;
+  color: var(--ink);
 }
 
 /* ═══ side projects ════════════════════════════════════════ */
@@ -626,7 +691,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
   margin-top: 7px;
   font-size: 13.5px;
   line-height: 1.55;
-  color: #3D3C39;
+  color: var(--ink);
 }
 
 /* ═══ footer ═══════════════════════════════════════════════ */
