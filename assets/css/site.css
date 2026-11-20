@@ -343,11 +343,13 @@ button { font: inherit; color: inherit; background: none; border: none; }
 .frame--off > .ph,
 .frame--off > img { border-radius: 0; }
 
-/* The block M sits bare and level on the page: it's transparent and
-   carries its own navy outline, so no tile, border, crop or tilt. */
+/* The seal sits bare and level on the page: it's transparent and
+   carries its own navy ring, so no tile, border, crop or tilt.
+   The source is only 250px, so on a 2x screen it's a touch soft at
+   this size; a larger source would fix that. */
 .frame--edu {
-  width: 150px;
-  aspect-ratio: 400 / 288; /* the mark's own shape */
+  width: 170px;
+  aspect-ratio: 1;
 }
 .frame--edu > img { object-fit: contain; border-radius: 0; }
 .frame--edu .ph { background: var(--blue-light); color: var(--blue); font-size: 10px; }
@@ -721,7 +723,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
 .edu {
   display: grid;
-  grid-template-columns: 1fr 150px;
+  grid-template-columns: 1fr 170px;
   gap: 20px;
   align-items: center;
 }
@@ -898,7 +900,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
   /* logo drops below the text, still at a small fixed size */
   .edu { grid-template-columns: 1fr; gap: 16px; }
-  .frame--edu { width: 112px; }
+  .frame--edu { width: 132px; }
 
   .off { grid-template-columns: 1fr; }
 }
