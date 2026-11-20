@@ -345,7 +345,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
 /* Square, because it holds the U of M block M rather than a photo. */
 .frame--edu {
-  width: 110px;
+  width: 160px;
   aspect-ratio: 1;
   border-radius: 8px;
   border: 1px solid var(--border);
@@ -722,7 +722,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
 .edu {
   display: grid;
-  grid-template-columns: 1fr 110px;
+  grid-template-columns: 1fr 160px;
   gap: 20px;
   align-items: center;
 }
@@ -900,7 +900,7 @@ button { font: inherit; color: inherit; background: none; border: none; }
   /* logo drops below the text; it stays a small square, since a
      full-width banner would crop the mark */
   .edu { grid-template-columns: 1fr; gap: 16px; }
-  .frame--edu { width: 88px; }
+  .frame--edu { width: 120px; }
 
   .off { grid-template-columns: 1fr; }
 }
