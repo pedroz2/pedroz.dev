@@ -343,9 +343,10 @@ button { font: inherit; color: inherit; background: none; border: none; }
 .frame--off > .ph,
 .frame--off > img { border-radius: 0; }
 
+/* Square, because it holds the U of M block M rather than a photo. */
 .frame--edu {
   width: 110px;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1;
   border-radius: 8px;
   border: 1px solid var(--border);
   transform: rotate(-1.2deg);
@@ -896,9 +897,10 @@ button { font: inherit; color: inherit; background: none; border: none; }
 
   .projects { grid-template-columns: 1fr; }
 
-  /* image drops below the text, full width */
+  /* logo drops below the text; it stays a small square, since a
+     full-width banner would crop the mark */
   .edu { grid-template-columns: 1fr; gap: 16px; }
-  .frame--edu { width: 100%; aspect-ratio: 16 / 6; }
+  .frame--edu { width: 88px; }
 
   .off { grid-template-columns: 1fr; }
 }
