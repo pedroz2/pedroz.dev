@@ -139,7 +139,7 @@
           </svg></a>
         </h3>
 
-        <p class="current__meta">data and AI development platform · aws</p>
+        <p class="current__meta">data and AI development platform</p>
 
         <p class="current__desc">One place to find your organization's data, query it, and build analytics, models, and generative AI apps on it — unifying Amazon EMR, Glue, Athena, Redshift, Bedrock, and SageMaker AI.</p>
 
@@ -157,11 +157,11 @@
     </h2>
 
     <ul class="wins">
-      <li class="card win"><p class="win__num">32%</p><p class="win__cap">fewer support tickets at launch</p></li>
-      <li class="card win"><p class="win__num">120</p><p class="win__cap">developer-hours saved every month</p></li>
-      <li class="card win"><p class="win__num">1,170+</p><p class="win__cap">customer accounts served</p></li>
+      <li class="card win"><p class="win__num">2</p><p class="win__cap">AWS services launched</p></li>
+      <li class="card win"><p class="win__num">11,700+</p><p class="win__cap">customers using services I&rsquo;ve built</p></li>
+      <li class="card win"><p class="win__num">2</p><p class="win__cap">nominated for AWS Hawaiian Shirt Awards for innovation (2023, 2024)</p></li>
+      <li class="card win"><p class="win__num">$61K</p><p class="win__cap">saved every month from a test infrastructure refactor</p></li>
       <li class="card win"><p class="win__num">191M</p><p class="win__cap">pages crawled by a search engine I built</p></li>
-      <li class="card win"><p class="win__num">2</p><p class="win__cap">innovation award nominations</p></li>
     </ul>
   </section>
 
@@ -183,10 +183,22 @@
         <div class="card entry__card">
           <h3 class="entry__role">SDE II</h3>
           <p class="entry__org">Amazon Web Services</p>
-          <p>Led a multi-team refactor of SageMaker Unified Studio's interface with Redshift end-to-end, adding authorization controls after customer feedback — nominated for 2 innovation awards.</p>
-          <p>Built CI/CD pipelines on CodePipeline and CodeBuild, enabling rapid iteration across 5 post-launch expansions. On-call engineer; wrote the team's runbook to centralize tribal knowledge.</p>
+          <ul class="entry__list">
+            <li>Launched Amazon SageMaker Unified Studio at general availability in March 2025, a single development environment for data, analytics and AI now used by thousands of enterprise customers.</li>
+            <li>Led a multi-team migration of blueprint ownership to partner teams across Java services and AWS CDK, moving 24 blueprints across 6 pipelines with feature-flagged rollouts validated by ~8,310 weekly pre-production environment creations (~1% error rate).</li>
+            <li>Took over a credentials API latency issue that had stalled across teams for 3 months, cutting latency ~88% (878ms to 101ms in beta) and clearing 22 tickets, including 5 Sev-2s.</li>
+            <li>Optimized partner lookups with strongly consistent reads, reducing latency from 100–130ms to 10–20ms and removing ~800ms from a production list API.</li>
+            <li>Led a rework of test infrastructure behind 500+ Sev-2s from failing tests, coordinating 4+ engineers and interns to add testing standards, containerized tests and resource health monitoring, cutting weekly Sev-2s 80% and saving $61K/month.</li>
+            <li>Automated 400+ manual pipeline interventions a month and reached full CI/CD with automated rollbacks, increasing deployment velocity 5x and cutting bake time from 12h to 4h.</li>
+            <li>Traced a 10-day production regression through ~1.9 billion CloudWatch log records across 21 regions, corrected the customer impact assessment and shipped permanent regression guards.</li>
+            <li>Designed and led a Partner Test Framework that lets partner teams test and deploy 15+ blueprints independently.</li>
+            <li>Reworked alarms to cut the false alarm rate from 85% to under 30%, and authored 2 threat models through AppSec review.</li>
+            <li>Delivered rule-based project membership, managed project profiles and multi-role environments for Bedrock app sharing, with IAM-based authorization.</li>
+            <li>Built an internal knowledge base bot with Amazon Kendra, Bedrock and DynamoDB, and an AI agent skill that automates the weekly operations review.</li>
+            <li>Led 4 region launches, shipped 790+ commits and mentored 6 engineers and interns.</li>
+          </ul>
           <ul class="chips">
-            <li>AWS Redshift</li><li>CodePipeline</li><li>CDK</li>
+            <li>Java</li><li>AWS CDK</li><li>CloudWatch</li><li>Bedrock</li>
           </ul>
         </div>
       </article>
@@ -194,28 +206,37 @@
       <article class="entry">
         <div class="entry__margin">
           <p class="entry__dates">Aug 2022 — Jan 2024</p>
-          <p class="entry__tag">SageMaker Unified Studio</p>
+          <p class="entry__tag">Amazon DataZone</p>
         </div>
         <div class="card entry__card">
           <h3 class="entry__role">SDE I</h3>
           <p class="entry__org">Amazon Web Services</p>
-          <p>Launched SageMaker Unified Studio, a scalable data governance service. Used Lambda, SQS, and CDK to build CRUD APIs with async validation — cut support tickets 32% vs. private beta.</p>
-          <p>Built core frontend pages in React and TypeScript for 1,170+ external customer accounts, working closely with UX and PM.</p>
+          <ul class="entry__list">
+            <li>Launched Amazon DataZone at general availability in October 2023, a data governance service for cataloging, discovering and sharing data across organizations, now the foundation of Amazon SageMaker Catalog.</li>
+            <li>Led a multi-team initiative to refactor the service's interface with Amazon Redshift end-to-end, adding authorization controls to address customer feedback and improve stability; nominated for 2 innovation awards.</li>
+            <li>Utilized AWS Lambda, SQS and CDK to implement CRUD APIs, adding asynchronous validations to improve downstream customer experience and reducing tickets by 32% compared to private beta.</li>
+            <li>Developed core frontend pages in React and TypeScript used to access and manage data for 1,170+ external customer accounts; collaborated with UX/UI designers and PMs to design and iterate.</li>
+            <li>Configured CI/CD pipelines with AWS CodePipeline and CodeBuild, streamlining development and enabling rapid iteration for 5 new expansions after launch.</li>
+            <li>Acted as on-call engineer, responding to incidents and performing root cause analysis; created the on-call runbook to centralize tribal knowledge and speed up onboarding.</li>
+          </ul>
           <ul class="chips">
-            <li>Lambda</li><li>SQS</li><li>React</li><li>TypeScript</li>
+            <li>Lambda</li><li>SQS</li><li>Redshift</li><li>React</li><li>TypeScript</li>
           </ul>
         </div>
       </article>
 
       <article class="entry">
         <div class="entry__margin">
-          <p class="entry__dates">May — Oct 2021</p>
+          <p class="entry__dates">May — Aug 2021</p>
           <p class="entry__tag">AWS Intern</p>
         </div>
         <div class="card entry__card">
           <h3 class="entry__role">SDE Intern</h3>
           <p class="entry__org">Database Analytics &amp; AI</p>
-          <p>Built a Self Service Dashboard so PMs could publish alerts and banners in the AWS Console directly — saved 120 developer-hours a month. Architected supporting APIs on Lambda and API Gateway.</p>
+          <ul class="entry__list">
+            <li>Created an internal self-service dashboard in React, Redux and TypeScript that let project managers automatically publish critical alerts and banners in the AWS Console, saving 120 developer-hours per month.</li>
+            <li>Architected APIs using AWS Lambda, API Gateway and internal authentication services to retrieve data and perform CRUD operations.</li>
+          </ul>
           <ul class="chips">
             <li>React</li><li>Redux</li><li>Lambda</li>
           </ul>
@@ -230,9 +251,30 @@
         <div class="card entry__card">
           <h3 class="entry__role">Software Engineer Intern</h3>
           <p class="entry__org">USHR Inc.</p>
-          <p>Maintained road-mapping software covering 500,000+ miles used by Nissan, Cadillac, and Rivian AV systems. Refactored publishing software for GM's 2021 contract — 19% EC2 usage improvement.</p>
+          <ul class="entry__list">
+            <li>Utilized Python, PostGIS and SQL to maintain road-mapping software providing data on 500,000+ miles of North American road to the autonomous vehicle systems of Nissan, Cadillac and Rivian.</li>
+            <li>Led a refactor of publishing software in anticipation of General Motors' 2021 contract requirements, implementing newly requested road objects and improving AWS EC2 usage by 19%.</li>
+          </ul>
           <ul class="chips">
-            <li>Python</li><li>AWS EC2</li>
+            <li>Python</li><li>PostGIS</li><li>AWS EC2</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry__margin">
+          <p class="entry__dates">Mar 2019 — Feb 2020</p>
+          <p class="entry__tag">U-M LSA</p>
+        </div>
+        <div class="card entry__card">
+          <h3 class="entry__role">Software Engineer Intern</h3>
+          <p class="entry__org">University of Michigan College of LSA</p>
+          <ul class="entry__list">
+            <li>Developed an interface between the faculty support website and the IT ticket system, enabling faster support responses to technology issues.</li>
+            <li>Refined inventory system software and proposed its automation with Python scripts, earning recognition for high productivity.</li>
+          </ul>
+          <ul class="chips">
+            <li>Python</li>
           </ul>
         </div>
       </article>
@@ -354,19 +396,19 @@
       <div class="tech__group">
         <p class="tech__label">languages</p>
         <ul class="chips chips--lg">
-          <li>C++</li><li>C</li><li>Java</li><li>JavaScript</li><li>Python</li><li>SQL</li><li>TypeScript</li>
+          <li>C++</li><li>C</li><li>Go</li><li>Java</li><li>JavaScript</li><li>Python</li><li>Rust</li><li>SQL</li><li>TypeScript</li>
         </ul>
       </div>
       <div class="tech__group">
         <p class="tech__label">frameworks</p>
         <ul class="chips chips--lg">
-          <li>Angular</li><li>Bootstrap</li><li>Electron</li><li>MongoDB</li><li>PostgreSQL</li><li>React</li><li>Redux</li><li>Tailwind</li>
+          <li>Angular</li><li>Apache Kafka</li><li>Apache Spark</li><li>Bootstrap</li><li>Electron</li><li>MongoDB</li><li>PostgreSQL</li><li>React</li><li>Redux</li><li>Tailwind</li>
         </ul>
       </div>
       <div class="tech__group">
         <p class="tech__label">tools</p>
         <ul class="chips chips--lg">
-          <li>AWS</li><li>AWS Lambda</li><li>CUDA</li><li>Git</li><li>Linux</li><li>macOS</li><li>MATLAB</li><li>PostGIS</li><li>Windows</li>
+          <li>AWS</li><li>ChatGPT</li><li>Claude</li><li>CUDA</li><li>Docker</li><li>Git</li><li>Grafana</li><li>Kubernetes</li><li>Linux</li><li>macOS</li><li>PostGIS</li><li>Terraform</li><li>Windows</li>
         </ul>
       </div>
     </div>

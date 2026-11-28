@@ -633,6 +633,9 @@ button { font: inherit; color: inherit; background: none; border: none; }
 }
 
 .entry__card p + p { margin-top: 7px; }
+.entry__list { margin: 8px 0 0; padding-left: 18px; list-style: disc; }
+.entry__list li { margin-top: 5px; font-size: 13.5px; line-height: 1.55; color: var(--ink); }
+.entry__list li::marker { color: var(--sage); }
 
 .entry__card > p:not(.entry__org) {
   font-size: 13.5px;
